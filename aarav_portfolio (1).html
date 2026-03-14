@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aarav Gupta Project Manager Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --surface: #111111;
+    --surface2: #1a1a1a;
+    --accent: #c8f060;
+    --accent2: #f0d060;
+    --text: #f0ede8;
+    --muted: #888;
+    --border: #222;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 3rem;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Fraunces', serif;
+    font-size: 1.2rem;
+    color: var(--accent);
+    letter-spacing: 0.02em;
+  }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 8rem 3rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -20%; right: -10%;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(200,240,96,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-inner { max-width: 900px; }
+  .hero-tag {
+    display: inline-block;
+    background: rgba(200,240,96,0.1);
+    border: 1px solid rgba(200,240,96,0.25);
+    color: var(--accent);
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.4rem 1rem;
+    border-radius: 100px;
+    margin-bottom: 2rem;
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-weight: 700;
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.7s 0.1s ease both;
+  }
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--accent);
+  }
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--muted);
+    max-width: 540px;
+    margin-bottom: 2.5rem;
+    animation: fadeUp 0.7s 0.2s ease both;
+  }
+  .hero-cta {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    animation: fadeUp 0.7s 0.3s ease both;
+  }
+  .btn {
+    padding: 0.85rem 2rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.04em;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+    display: inline-block;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #0a0a0a;
+    border: none;
+    font-weight: 500;
+  }
+  .btn-primary:hover { background: #d4f572; transform: translateY(-1px); }
+  .btn-outline {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+  .hero-stats {
+    display: flex; gap: 3rem; margin-top: 4rem;
+    padding-top: 3rem; border-top: 1px solid var(--border);
+    animation: fadeUp 0.7s 0.4s ease both;
+  }
+  .stat-num {
+    font-family: 'Fraunces', serif;
+    font-size: 2rem;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .stat-label { font-size: 0.8rem; color: var(--muted); margin-top: 0.25rem; }
+
+  /* SECTIONS */
+  section { padding: 6rem 3rem; }
+  .section-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 3rem;
+  }
+  .section-title em { font-style: italic; font-weight: 300; }
+  .max-w { max-width: 1100px; margin: 0 auto; }
+
+  /* ABOUT */
+  #about { background: var(--surface); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .about-text p { color: rgba(240,237,232,0.75); margin-bottom: 1.2rem; font-size: 1.05rem; }
+  .about-certs {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem;
+  }
+  .about-certs h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    color: var(--accent2);
+  }
+  .cert-item {
+    display: flex; align-items: center; gap: 0.8rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.9rem;
+  }
+  .cert-item:last-child { border-bottom: none; }
+  .cert-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--accent); flex-shrink: 0;
+  }
+
+  /* PROJECTS */
+  #projects { background: var(--bg); }
+  .projects-grid { display: grid; gap: 1.5rem; }
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2.5rem;
+    transition: border-color 0.25s, transform 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .project-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+  .project-card:hover { border-color: rgba(200,240,96,0.3); transform: translateY(-3px); }
+  .project-card:hover::before { opacity: 1; }
+
+  .project-header {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    margin-bottom: 1rem; flex-wrap: wrap; gap: 1rem;
+  }
+  .project-tag {
+    font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.3rem 0.8rem; border-radius: 100px;
+    background: rgba(200,240,96,0.08);
+    border: 1px solid rgba(200,240,96,0.2);
+    color: var(--accent);
+  }
+  .project-card h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+  .project-role {
+    font-size: 0.8rem; color: var(--accent2);
+    text-transform: uppercase; letter-spacing: 0.08em;
+    margin-bottom: 1rem;
+  }
+  .project-card p { color: rgba(240,237,232,0.7); font-size: 0.95rem; margin-bottom: 1rem; }
+
+  .project-details {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem; margin: 1.5rem 0;
+  }
+  .detail-box {
+    background: var(--surface2);
+    border-radius: 8px; padding: 1rem;
+  }
+  .detail-box .label { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.3rem; }
+  .detail-box .value { font-size: 0.9rem; color: var(--text); }
+
+  .project-outcome {
+    background: rgba(200,240,96,0.06);
+    border: 1px solid rgba(200,240,96,0.15);
+    border-radius: 8px;
+    padding: 1rem 1.2rem;
+    font-size: 0.9rem;
+    color: var(--accent);
+    margin-top: 1rem;
+  }
+  .project-outcome strong { font-weight: 500; }
+
+  .tags-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.2rem; }
+  .skill-tag {
+    font-size: 0.75rem; color: var(--muted);
+    padding: 0.25rem 0.7rem; border-radius: 4px;
+    background: var(--surface2); border: 1px solid var(--border);
+  }
+
+  /* INTERNSHIPS */
+  #experience { background: var(--surface); }
+  .exp-list { display: grid; gap: 1.5rem; }
+  .exp-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem 2.5rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.5rem;
+    transition: border-color 0.2s;
+  }
+  .exp-card:hover { border-color: rgba(200,240,96,0.25); }
+  .exp-dot-col { display: flex; flex-direction: column; align-items: center; padding-top: 0.4rem; }
+  .exp-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+  .exp-line { width: 1px; background: var(--border); flex: 1; margin-top: 0.5rem; }
+  .exp-date { font-size: 0.8rem; color: var(--muted); margin-bottom: 0.3rem; }
+  .exp-title { font-family: 'Fraunces', serif; font-size: 1.2rem; margin-bottom: 0.2rem; }
+  .exp-company { font-size: 0.85rem; color: var(--accent); margin-bottom: 1rem; }
+  .exp-bullets { list-style: none; }
+  .exp-bullets li {
+    padding: 0.4rem 0;
+    font-size: 0.9rem;
+    color: rgba(240,237,232,0.72);
+    padding-left: 1.2rem;
+    position: relative;
+  }
+  .exp-bullets li::before {
+    content: '→';
+    position: absolute; left: 0;
+    color: var(--accent); font-size: 0.8rem;
+  }
+
+  /* SKILLS */
+  #skills { background: var(--bg); }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+  .skill-group {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.8rem;
+  }
+  .skill-group h4 {
+    font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 1.2rem;
+  }
+  .skill-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .skill-pill {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.4rem 0.9rem;
+    font-size: 0.82rem;
+    color: rgba(240,237,232,0.8);
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .skill-pill:hover { border-color: rgba(200,240,96,0.4); color: var(--accent); }
+
+  /* CONTACT */
+  #contact {
+    background: var(--surface);
+    text-align: center;
+  }
+  .contact-inner { max-width: 600px; margin: 0 auto; }
+  .contact-inner .section-title { margin-bottom: 1rem; }
+  .contact-sub { color: var(--muted); margin-bottom: 3rem; }
+  .contact-links { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+  .contact-link {
+    display: flex; align-items: center; gap: 0.6rem;
+    padding: 0.9rem 1.6rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+    background: var(--bg);
+  }
+  .contact-link:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* FOOTER */
+  footer {
+    padding: 2rem 3rem;
+    border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.8rem; color: var(--muted);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.animate-hidden {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 4rem 1.5rem; }
+    .hero { padding: 7rem 1.5rem 3rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .hero-stats { gap: 2rem; flex-wrap: wrap; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Aarav Gupta</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <div class="hero-tag">Open to PM and Marketing Roles · Pan India / Remote</div>
+    <h1>Aarav<br><em>Gupta</em></h1>
+    <p class="hero-sub">Aspiring Project Manager and Marketing Professional with hands-on experience in digital campaigns, operations coordination, and venture building, backed by a Google Project Management certification.</p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">View My Work</a>
+      <a href="#contact" class="btn btn-outline">Get In Touch</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">6+</div>
+        <div class="stat-label">Projects Executed</div>
+      </div>
+      <div>
+        <div class="stat-num">2</div>
+        <div class="stat-label">Internships</div>
+      </div>
+      <div>
+        <div class="stat-num">₹11K+</div>
+        <div class="stat-label">Revenue Generated</div>
+      </div>
+      <div>
+        <div class="stat-num">4</div>
+        <div class="stat-label">Certifications</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="max-w">
+    <div class="section-label">About Me</div>
+    <div class="section-title">Business thinker.<br><em>Execution-first mindset.</em></div>
+    <div class="about-grid reveal">
+      <div class="about-text">
+        <p>I'm a final-year BBA student at NMIMS Mumbai, specialising in the intersection of business strategy, digital marketing, and project execution. I've built and launched real ventures from scratch, managing everything from product strategy and stakeholder coordination to campaign delivery and performance analytics.</p>
+        <p>My work spans retail e-commerce, digital marketing, NGO operations, and event management at a national level. I bring structured thinking to every project I work on, whether that's scoping a campaign, coordinating a team, or tracking delivery against KPIs.</p>
+        <p>I'm primarily drawn to <strong style="color:var(--accent)">Project Management and Marketing roles</strong>, and open to opportunities across India and remote. I hold a <strong style="color:var(--accent)">Google Project Management Certificate</strong> and am actively looking for roles where I can drive cross-functional work and create measurable impact.</p>
+      </div>
+      <div class="about-certs">
+        <h3>Certifications & Education</h3>
+        <div class="cert-item"><div class="cert-dot"></div>Google Project Management Certificate</div>
+        <div class="cert-item"><div class="cert-dot"></div>Brand Management London Business School</div>
+        <div class="cert-item"><div class="cert-dot"></div>Fundamentals of Digital Marketing Google</div>
+        <div class="cert-item"><div class="cert-dot"></div>Oracle AI Foundations</div>
+        <div class="cert-item" style="margin-top:1rem; border-top: 1px solid var(--border); padding-top:1rem;">
+          <div class="cert-dot" style="background:var(--accent2)"></div>
+          BBA · NMIMS Mumbai · 2023–2026
+        </div>
+        <div class="cert-item"><div class="cert-dot" style="background:var(--accent2)"></div>Class XII · DPS Commerce · 85.80%</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="max-w">
+    <div class="section-label">Case Studies</div>
+    <div class="section-title">Projects that <em>shipped.</em></div>
+    <p style="color:var(--muted); font-size:0.88rem; margin-top:-1.5rem; margin-bottom:2.5rem; background:rgba(200,240,96,0.05); border:1px solid rgba(200,240,96,0.15); border-radius:8px; padding:0.8rem 1.2rem; display:inline-block;">
+      📌 All projects below are academic or personal projects completed during my BBA at NMIMS. None are professional client work.
+    </p>
+    <div class="projects-grid">
+
+      <!-- Eclipse Jewels -->
+      <div class="project-card reveal">
+        <div class="project-header">
+          <div>
+            <div class="project-role">Founder & Project Lead</div>
+            <h3>Eclipse Jewels Retail E-Commerce Venture</h3>
+          </div>
+          <div class="project-tag">Venture / E-Commerce</div>
+        </div>
+        <p>Conceptualised and launched a jewellery retail venture end-to-end from product sourcing and branding to building a website and running an Instagram-led marketing strategy. Managed the full project lifecycle independently.</p>
+        <div class="project-details">
+          <div class="detail-box"><div class="label">Scope</div><div class="value">Website build + Instagram marketing + sales</div></div>
+          <div class="detail-box"><div class="label">Stakeholders</div><div class="value">Suppliers, customers, platform vendors</div></div>
+          <div class="detail-box"><div class="label">Tools Used</div><div class="value">Wix, Instagram, Canva, Shopify</div></div>
+        </div>
+        <div class="project-outcome">✦ <strong>Outcome:</strong> Generated ₹6,540 in revenue. Delivered a live product with an active customer base.</div>
+        <div class="tags-row">
+          <span class="skill-tag">Project Planning</span>
+          <span class="skill-tag">Stakeholder Management</span>
+          <span class="skill-tag">Budget Management</span>
+          <span class="skill-tag">Digital Marketing</span>
+          <span class="skill-tag">Product Strategy</span>
+        </div>
+      </div>
+
+      <!-- Freshly Rolled -->
+      <div class="project-card reveal">
+        <div class="project-header">
+          <div>
+            <div class="project-role">Platform Lead & Content Strategist</div>
+            <h3>Freshly Rolled Content Platform Launch</h3>
+          </div>
+          <div class="project-tag">Content / SEO</div>
+        </div>
+        <p>Launched a content platform from zero developed the content architecture, implemented an SEO-driven publishing strategy, and coordinated content production to drive organic discovery and audience growth.</p>
+        <div class="project-details">
+          <div class="detail-box"><div class="label">Scope</div><div class="value">Platform setup + SEO + content pipeline</div></div>
+          <div class="detail-box"><div class="label">Focus Areas</div><div class="value">Growth strategy, SEO, content ops</div></div>
+          <div class="detail-box"><div class="label">Tools Used</div><div class="value">Google Analytics, SEO tools, CMS</div></div>
+        </div>
+        <div class="project-outcome">✦ <strong>Outcome:</strong> Achieved 1,000+ views through structured SEO content strategy.</div>
+        <div class="tags-row">
+          <span class="skill-tag">Launch Planning</span>
+          <span class="skill-tag">SEO Strategy</span>
+          <span class="skill-tag">Growth Metrics</span>
+          <span class="skill-tag">Content Operations</span>
+        </div>
+      </div>
+
+      <!-- Zomato Campaign -->
+      <div class="project-card reveal">
+        <div class="project-header">
+          <div>
+            <div class="project-role">Campaign Strategist</div>
+            <h3>Zomato 360° Advertising Campaign</h3>
+          </div>
+          <div class="project-tag">Marketing Strategy</div>
+        </div>
+        <p>Designed a comprehensive multi-channel advertising campaign for Zomato using the STP (Segmentation, Targeting, Positioning) framework and AIDA model. Developed campaign brief, audience segmentation, messaging hierarchy, and channel strategy.</p>
+        <div class="project-details">
+          <div class="detail-box"><div class="label">Frameworks</div><div class="value">STP + AIDA Model</div></div>
+          <div class="detail-box"><div class="label">Deliverables</div><div class="value">Full campaign deck + audience brief</div></div>
+          <div class="detail-box"><div class="label">Type</div><div class="value">Academic Strategic Project</div></div>
+        </div>
+        <div class="project-outcome">✦ <strong>Key Skill Demonstrated:</strong> Structured campaign planning, stakeholder-aligned messaging, and framework-driven decision-making core PM competencies.</div>
+        <div class="tags-row">
+          <span class="skill-tag">Campaign Planning</span>
+          <span class="skill-tag">STP Framework</span>
+          <span class="skill-tag">Audience Segmentation</span>
+          <span class="skill-tag">Strategic Presentation</span>
+        </div>
+      </div>
+
+      <!-- Flipkart -->
+      <div class="project-card reveal">
+        <div class="project-header">
+          <div>
+            <div class="project-role">Researcher & Analyst</div>
+            <h3>Flipkart Big Billion Days CRM & Distribution Analysis</h3>
+          </div>
+          <div class="project-tag">Research / Analytics</div>
+        </div>
+        <p>Conducted an industry interview and in-depth analysis of Flipkart's Big Billion Days event examining CRM systems, distribution strategy, and sales KPIs. Translated findings into structured insights on how large-scale operations are planned and executed.</p>
+        <div class="project-details">
+          <div class="detail-box"><div class="label">Method</div><div class="value">Industry interview + secondary research</div></div>
+          <div class="detail-box"><div class="label">Focus</div><div class="value">CRM, logistics, KPI tracking</div></div>
+          <div class="detail-box"><div class="label">Tools</div><div class="value">Excel, PowerPoint</div></div>
+        </div>
+        <div class="project-outcome">✦ <strong>Key Skill Demonstrated:</strong> Stakeholder interviews, data-driven analysis, and KPI benchmarking translating research into operational insights.</div>
+        <div class="tags-row">
+          <span class="skill-tag">CRM Analysis</span>
+          <span class="skill-tag">KPI Tracking</span>
+          <span class="skill-tag">Research</span>
+          <span class="skill-tag">Distribution Strategy</span>
+        </div>
+      </div>
+
+      <!-- On-ground Sales -->
+      <div class="project-card reveal">
+        <div class="project-header">
+          <div>
+            <div class="project-role">Sales & Operations Lead</div>
+            <h3>On-Ground Sales Project Pricing & Inventory Strategy</h3>
+          </div>
+          <div class="project-tag">Operations / Sales</div>
+        </div>
+        <p>Executed a live on-ground sales project that required real-time decision-making on pricing strategy, inventory management, and customer acquisition. Operated under budget constraints and time pressure mirroring real operational PM challenges.</p>
+        <div class="project-details">
+          <div class="detail-box"><div class="label">Scope</div><div class="value">Live sales execution under constraints</div></div>
+          <div class="detail-box"><div class="label">Key Decisions</div><div class="value">Pricing, inventory, cost management</div></div>
+          <div class="detail-box"><div class="label">Type</div><div class="value">Experiential Academic Project</div></div>
+        </div>
+        <div class="project-outcome">✦ <strong>Outcome:</strong> Generated ₹4,960 revenue. Demonstrated real-world budgeting, operational planning, and execution under pressure.</div>
+        <div class="tags-row">
+          <span class="skill-tag">Operations Management</span>
+          <span class="skill-tag">Pricing Strategy</span>
+          <span class="skill-tag">Inventory Planning</span>
+          <span class="skill-tag">Budget Management</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="max-w">
+    <div class="section-label">Work Experience</div>
+    <div class="section-title">Where I've <em>contributed.</em></div>
+    <div class="exp-list">
+
+      <div class="exp-card reveal">
+        <div class="exp-dot-col"><div class="exp-dot"></div><div class="exp-line"></div></div>
+        <div>
+          <div class="exp-date">June 2025 – August 2025</div>
+          <div class="exp-title">Intern Digital Marketing & Communication</div>
+          <div class="exp-company">House of Atri, Ahmedabad</div>
+          <ul class="exp-bullets">
+            <li>Planned and executed integrated digital campaigns across Instagram and Meta, contributing to <strong style="color:var(--accent)">35% follower growth</strong> during the internship period.</li>
+            <li>Applied audience segmentation and structured campaign planning, driving <strong style="color:var(--accent)">25% engagement growth</strong> and increased website traffic.</li>
+            <li>Optimised on-page SEO and managed community engagement to enhance content visibility and brand interaction.</li>
+          </ul>
+          <div class="tags-row" style="margin-top:1rem;">
+            <span class="skill-tag">Campaign Management</span>
+            <span class="skill-tag">Meta Business Suite</span>
+            <span class="skill-tag">SEO</span>
+            <span class="skill-tag">Audience Segmentation</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-card reveal">
+        <div class="exp-dot-col"><div class="exp-dot"></div><div class="exp-line"></div></div>
+        <div>
+          <div class="exp-date">June 2024 – July 2024</div>
+          <div class="exp-title">Intern Operations & Engagement</div>
+          <div class="exp-company">LetThePawRoar, Animal Welfare Society, Meerut</div>
+          <ul class="exp-bullets">
+            <li>Managed social media outreach and fundraising campaigns, coordinating with local businesses to secure partnerships and contributions.</li>
+            <li>Coordinated awareness drives and supported on-ground logistics planning timelines, managing volunteer teams, and ensuring campaign delivery.</li>
+          </ul>
+          <div class="tags-row" style="margin-top:1rem;">
+            <span class="skill-tag">Operations Coordination</span>
+            <span class="skill-tag">Stakeholder Outreach</span>
+            <span class="skill-tag">Logistics Planning</span>
+            <span class="skill-tag">NGO / Social Impact</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-card reveal">
+        <div class="exp-dot-col"><div class="exp-dot"></div></div>
+        <div>
+          <div class="exp-date">NMIMS ASMSOC · National Level</div>
+          <div class="exp-title">Senior Member Proshows, Vaayu Fest</div>
+          <div class="exp-company">NMIMS Mumbai</div>
+          <ul class="exp-bullets">
+            <li>Led strategic planning and end-to-end execution of large-scale events at a national-level college fest managing cross-functional teams, vendor coordination, and event logistics.</li>
+            <li>Demonstrated core PM skills: scope definition, timeline management, stakeholder communication, and on-ground problem solving.</li>
+          </ul>
+          <div class="tags-row" style="margin-top:1rem;">
+            <span class="skill-tag">Event Management</span>
+            <span class="skill-tag">Team Leadership</span>
+            <span class="skill-tag">Cross-functional Coordination</span>
+            <span class="skill-tag">Vendor Management</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="max-w">
+    <div class="section-label">Skills & Tools</div>
+    <div class="section-title">What I <em>work with.</em></div>
+    <div class="skills-grid reveal">
+      <div class="skill-group">
+        <h4>Project Management</h4>
+        <div class="skill-pills">
+          <span class="skill-pill">Agile / Scrum</span>
+          <span class="skill-pill">Project Planning</span>
+          <span class="skill-pill">Risk Management</span>
+          <span class="skill-pill">Stakeholder Mgmt</span>
+          <span class="skill-pill">Scope Definition</span>
+          <span class="skill-pill">Timeline Planning</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Analytics & Data</h4>
+        <div class="skill-pills">
+          <span class="skill-pill">Microsoft Excel</span>
+          <span class="skill-pill">Power BI</span>
+          <span class="skill-pill">Google Analytics</span>
+          <span class="skill-pill">SQL</span>
+          <span class="skill-pill">Tableau</span>
+          <span class="skill-pill">KPI Tracking</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Digital & Marketing</h4>
+        <div class="skill-pills">
+          <span class="skill-pill">Campaign Planning</span>
+          <span class="skill-pill">SEO</span>
+          <span class="skill-pill">Meta Business Suite</span>
+          <span class="skill-pill">Audience Segmentation</span>
+          <span class="skill-pill">CRM</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Tools & Platforms</h4>
+        <div class="skill-pills">
+          <span class="skill-pill">Trello / Asana</span>
+          <span class="skill-pill">Notion</span>
+          <span class="skill-pill">Canva</span>
+          <span class="skill-pill">Wix / Shopify</span>
+          <span class="skill-pill">PowerPoint</span>
+          <span class="skill-pill">Generative AI</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="max-w">
+    <div class="contact-inner reveal">
+      <div class="section-label">Let's Connect</div>
+      <div class="section-title">Open to <em>opportunities.</em></div>
+      <p class="contact-sub">Looking for entry-level Project Management, Marketing, or Operations roles. Open to all locations across India and remote opportunities. Let's talk.</p>
+      <div class="contact-links">
+        <a href="mailto:aaravg044@gmail.com" class="contact-link">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+          <span class="__cf_email__" data-cfemail="e4858596859283d4d0d0a48389858d88ca878b89">[email&#160;protected]</span>
+        </a>
+        <a href="tel:+918739991113" class="contact-link">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.01 2.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          +91 87399 91113
+        </a>
+        <a href="https://www.linkedin.com/in/aarav-gupta14" class="contact-link" target="_blank">
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>© 2025 Aarav Gupta</div>
+  <div>BBA · NMIMS Mumbai · Project Management and Marketing</div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  document.querySelectorAll('.reveal').forEach(el => {
+    el.style.opacity = '1';
+    el.style.transform = 'none';
+  });
+</script>
+</body>
+</html>
